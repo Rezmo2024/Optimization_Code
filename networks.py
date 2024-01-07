@@ -1,6 +1,5 @@
 import networkx as nx
 import pylab as P
-from networkx import *
 import matplotlib.pyplot as plt
 print("hello")
 G=nx.Graph()
@@ -20,11 +19,8 @@ import networkx as nx
 
 from graphilp.imports import networkx as imp_nx
 from graphilp.partitioning import min_vertex_coloring as vtx
-
 G_init = nx.cycle_graph(n=5)
 G = imp_nx.read(G_init)
-
 m = vtx.create_model(G)
 m.optimize()
-
 color_to_node, node_to_color = vtx.extract_solution(G, m)
