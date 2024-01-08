@@ -30,4 +30,4 @@ mincostFlowValue = sum((mincostFlow[u][7] for u in G.predecessors(7))) - sum(
   (mincostFlow[7][v] for v in G.successors(7)) )
 mincostFlowValue == nx.maximum_flow_value(G, 1, 7)
 print(mincostFlowValue)
-nx.algorithms.
+

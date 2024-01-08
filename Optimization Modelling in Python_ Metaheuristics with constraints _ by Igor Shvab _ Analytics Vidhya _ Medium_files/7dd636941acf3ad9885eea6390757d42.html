@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/7dd636941acf3ad9885eea6390757d42 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>particle swarm optimization – Medium</title><meta name="description" content="You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body data-new-gr-c-s-loaded="14.1148.0"><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./fd3082c8ccd20c05135837721a192565.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-c77408be8058.css"><div id="gist104995218" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-particle_swarm-py" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-python  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Python" data-tagsearch-path="particle_swarm.py">
+        <tbody><tr>
+          <td id="file-particle_swarm-py-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-particle_swarm-py-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># Parameters of PS algorithm</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-particle_swarm-py-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">problem</span> <span class="pl-c1">=</span> <span class="pl-s">'minimize'</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-particle_swarm-py-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">n_particles</span> <span class="pl-c1">=</span> <span class="pl-c1">200</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-particle_swarm-py-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">n_iterations</span> <span class="pl-c1">=</span> <span class="pl-c1">500</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-particle_swarm-py-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">inertia_coeff</span> <span class="pl-c1">=</span> <span class="pl-c1">0.9</span>     <span class="pl-c"># inertia constant</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-particle_swarm-py-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">c1</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>                  <span class="pl-c"># cognitive constant</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-particle_swarm-py-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">c2</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span>                  <span class="pl-c"># social constant</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-particle_swarm-py-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-particle_swarm-py-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># Visualization</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-particle_swarm-py-LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">fig</span> <span class="pl-c1">=</span> <span class="pl-s1">plt</span>.<span class="pl-en">figure</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-particle_swarm-py-LC11" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">ax</span> <span class="pl-c1">=</span> <span class="pl-s1">fig</span>.<span class="pl-en">add_subplot</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-particle_swarm-py-LC12" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">fig</span>.<span class="pl-en">show</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-particle_swarm-py-LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">plt</span>.<span class="pl-en">title</span>(<span class="pl-s">'Evolutionary process of the objective function value'</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-particle_swarm-py-LC14" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">plt</span>.<span class="pl-en">xlabel</span>(<span class="pl-s">"Iteration"</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-particle_swarm-py-LC15" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">plt</span>.<span class="pl-en">ylabel</span>(<span class="pl-s">"Objective function"</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-particle_swarm-py-LC16" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-particle_swarm-py-LC17" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-v">Particle</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-particle_swarm-py-LC18" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">bounds</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-particle_swarm-py-LC19" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span> <span class="pl-c1">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-particle_swarm-py-LC20" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">self</span>.<span class="pl-s1">particle_velocity</span> <span class="pl-c1">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-particle_swarm-py-LC21" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">self</span>.<span class="pl-s1">local_best_particle_position</span> <span class="pl-c1">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-particle_swarm-py-LC22" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">self</span>.<span class="pl-s1">fitness_local_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">initial_fitness</span>  <span class="pl-c"># objective function value of the best particle position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-particle_swarm-py-LC23" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">self</span>.<span class="pl-s1">fitness_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">initial_fitness</span>  <span class="pl-c"># objective function value of the particle position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-particle_swarm-py-LC24" class="blob-code blob-code-inner js-file-line">        </td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-particle_swarm-py-LC25" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_vars</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-particle_swarm-py-LC26" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>.<span class="pl-en">append</span>(</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-particle_swarm-py-LC27" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">uniform</span>(<span class="pl-s1">bounds</span>[<span class="pl-s1">i</span>][<span class="pl-c1">0</span>], <span class="pl-s1">bounds</span>[<span class="pl-s1">i</span>][<span class="pl-c1">1</span>]))  <span class="pl-c"># generate random initial position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-particle_swarm-py-LC28" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">self</span>.<span class="pl-s1">particle_velocity</span>.<span class="pl-en">append</span>(<span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">uniform</span>(<span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">1</span>))  <span class="pl-c"># generate random initial velocity</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-particle_swarm-py-LC29" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-particle_swarm-py-LC30" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">def</span> <span class="pl-en">evaluate</span>(<span class="pl-s1">self</span>, <span class="pl-s1">objective_function</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-particle_swarm-py-LC31" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">self</span>.<span class="pl-s1">fitness_particle_position</span> <span class="pl-c1">=</span> <span class="pl-en">objective_function</span>(<span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-particle_swarm-py-LC32" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-s1">problem</span> <span class="pl-c1">==</span> <span class="pl-s">'minimize'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-particle_swarm-py-LC33" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">fitness_particle_position</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">self</span>.<span class="pl-s1">fitness_local_best_particle_position</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-particle_swarm-py-LC34" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">self</span>.<span class="pl-s1">local_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>  <span class="pl-c"># update particle's local best poition</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-particle_swarm-py-LC35" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">self</span>.<span class="pl-s1">fitness_local_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">fitness_particle_position</span>  <span class="pl-c"># update fitness at particle's local best position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-particle_swarm-py-LC36" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-s1">problem</span> <span class="pl-c1">==</span> <span class="pl-s">'maximize'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-particle_swarm-py-LC37" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">fitness_particle_position</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">self</span>.<span class="pl-s1">fitness_local_best_particle_position</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-particle_swarm-py-LC38" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">self</span>.<span class="pl-s1">local_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>  <span class="pl-c"># update particle's local best position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-particle_swarm-py-LC39" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">self</span>.<span class="pl-s1">fitness_local_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">fitness_particle_position</span>  <span class="pl-c"># update fitness at particle's local best position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-particle_swarm-py-LC40" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-particle_swarm-py-LC41" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">def</span> <span class="pl-en">update_velocity</span>(<span class="pl-s1">self</span>, <span class="pl-s1">global_best_particle_position</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L42" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="42"></td>
+          <td id="file-particle_swarm-py-LC42" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_vars</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L43" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="43"></td>
+          <td id="file-particle_swarm-py-LC43" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">r1</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">rand</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L44" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="44"></td>
+          <td id="file-particle_swarm-py-LC44" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">r2</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">rand</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L45" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="45"></td>
+          <td id="file-particle_swarm-py-LC45" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L46" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="46"></td>
+          <td id="file-particle_swarm-py-LC46" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"># local explorative position displacement component </span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L47" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="47"></td>
+          <td id="file-particle_swarm-py-LC47" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">cognitive_velocity</span> <span class="pl-c1">=</span> <span class="pl-s1">c1</span><span class="pl-c1">*</span><span class="pl-s1">r1</span><span class="pl-c1">*</span>(<span class="pl-s1">self</span>.<span class="pl-s1">local_best_particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">-</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>])</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L48" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="48"></td>
+          <td id="file-particle_swarm-py-LC48" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L49" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="49"></td>
+          <td id="file-particle_swarm-py-LC49" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"># position displacement component towards global best</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L50" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="50"></td>
+          <td id="file-particle_swarm-py-LC50" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">social_velocity</span> <span class="pl-c1">=</span> <span class="pl-s1">c2</span><span class="pl-c1">*</span><span class="pl-s1">r2</span><span class="pl-c1">*</span>(<span class="pl-s1">global_best_particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">-</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>])</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L51" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="51"></td>
+          <td id="file-particle_swarm-py-LC51" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L52" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="52"></td>
+          <td id="file-particle_swarm-py-LC52" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">self</span>.<span class="pl-s1">particle_velocity</span>[<span class="pl-s1">i</span>] <span class="pl-c1">=</span> <span class="pl-s1">inertia_coeff</span><span class="pl-c1">*</span><span class="pl-s1">self</span>.<span class="pl-s1">particle_velocity</span>[<span class="pl-s1">i</span>] <span class="pl-c1">+</span> <span class="pl-s1">cognitive_velocity</span> <span class="pl-c1">+</span> <span class="pl-s1">social_velocity</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L53" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="53"></td>
+          <td id="file-particle_swarm-py-LC53" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L54" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="54"></td>
+          <td id="file-particle_swarm-py-LC54" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">def</span> <span class="pl-en">update_position</span>(<span class="pl-s1">self</span>, <span class="pl-s1">bounds</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L55" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="55"></td>
+          <td id="file-particle_swarm-py-LC55" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_vars</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L56" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="56"></td>
+          <td id="file-particle_swarm-py-LC56" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">+</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_velocity</span>[<span class="pl-s1">i</span>]</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L57" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="57"></td>
+          <td id="file-particle_swarm-py-LC57" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L58" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="58"></td>
+          <td id="file-particle_swarm-py-LC58" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"># check and repair to satisfy the upper bounds</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L59" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="59"></td>
+          <td id="file-particle_swarm-py-LC59" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">&gt;</span> <span class="pl-s1">bounds</span>[<span class="pl-s1">i</span>][<span class="pl-c1">1</span>]:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L60" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="60"></td>
+          <td id="file-particle_swarm-py-LC60" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">=</span> <span class="pl-s1">bounds</span>[<span class="pl-s1">i</span>][<span class="pl-c1">1</span>]</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L61" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="61"></td>
+          <td id="file-particle_swarm-py-LC61" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"># check and repair to satisfy the lower bounds</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L62" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="62"></td>
+          <td id="file-particle_swarm-py-LC62" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">&lt;</span> <span class="pl-s1">bounds</span>[<span class="pl-s1">i</span>][<span class="pl-c1">0</span>]:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L63" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="63"></td>
+          <td id="file-particle_swarm-py-LC63" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">self</span>.<span class="pl-s1">particle_position</span>[<span class="pl-s1">i</span>] <span class="pl-c1">=</span> <span class="pl-s1">bounds</span>[<span class="pl-s1">i</span>][<span class="pl-c1">0</span>]</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L64" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="64"></td>
+          <td id="file-particle_swarm-py-LC64" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L65" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="65"></td>
+          <td id="file-particle_swarm-py-LC65" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-v">PSO</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L66" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="66"></td>
+          <td id="file-particle_swarm-py-LC66" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">objective_function</span>, <span class="pl-s1">bounds</span>, <span class="pl-s1">n_particles</span>, <span class="pl-s1">n_iterations</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L67" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="67"></td>
+          <td id="file-particle_swarm-py-LC67" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">fitness_global_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-s1">initial_fitness</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L68" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="68"></td>
+          <td id="file-particle_swarm-py-LC68" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">global_best_particle_position</span> <span class="pl-c1">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L69" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="69"></td>
+          <td id="file-particle_swarm-py-LC69" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">swarm_particle</span> <span class="pl-c1">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L70" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="70"></td>
+          <td id="file-particle_swarm-py-LC70" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_particles</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L71" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="71"></td>
+          <td id="file-particle_swarm-py-LC71" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">swarm_particle</span>.<span class="pl-en">append</span>(<span class="pl-v">Particle</span>(<span class="pl-s1">bounds</span>))</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L72" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="72"></td>
+          <td id="file-particle_swarm-py-LC72" class="blob-code blob-code-inner js-file-line">        <span class="pl-v">A</span> <span class="pl-c1">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L73" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="73"></td>
+          <td id="file-particle_swarm-py-LC73" class="blob-code blob-code-inner js-file-line">        </td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L74" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="74"></td>
+          <td id="file-particle_swarm-py-LC74" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_iterations</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L75" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="75"></td>
+          <td id="file-particle_swarm-py-LC75" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_particles</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L76" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="76"></td>
+          <td id="file-particle_swarm-py-LC76" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-en">evaluate</span>(<span class="pl-s1">objective_function</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L77" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="77"></td>
+          <td id="file-particle_swarm-py-LC77" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L78" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="78"></td>
+          <td id="file-particle_swarm-py-LC78" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-s1">problem</span> <span class="pl-c1">==</span> <span class="pl-s">'minimize'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L79" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="79"></td>
+          <td id="file-particle_swarm-py-LC79" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-s1">fitness_particle_position</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">fitness_global_best_particle_position</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L80" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="80"></td>
+          <td id="file-particle_swarm-py-LC80" class="blob-code blob-code-inner js-file-line">                        <span class="pl-s1">global_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-en">list</span>(<span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-s1">particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L81" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="81"></td>
+          <td id="file-particle_swarm-py-LC81" class="blob-code blob-code-inner js-file-line">                        <span class="pl-s1">fitness_global_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-en">float</span>(<span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-s1">fitness_particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L82" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="82"></td>
+          <td id="file-particle_swarm-py-LC82" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-s1">problem</span> <span class="pl-c1">==</span> <span class="pl-s">'maximize'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L83" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="83"></td>
+          <td id="file-particle_swarm-py-LC83" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-s1">fitness_particle_position</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">fitness_global_best_particle_position</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L84" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="84"></td>
+          <td id="file-particle_swarm-py-LC84" class="blob-code blob-code-inner js-file-line">                        <span class="pl-s1">global_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-en">list</span>(<span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-s1">particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L85" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="85"></td>
+          <td id="file-particle_swarm-py-LC85" class="blob-code blob-code-inner js-file-line">                        <span class="pl-s1">fitness_global_best_particle_position</span> <span class="pl-c1">=</span> <span class="pl-en">float</span>(<span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-s1">fitness_particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L86" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="86"></td>
+          <td id="file-particle_swarm-py-LC86" class="blob-code blob-code-inner js-file-line">                        </td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L87" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="87"></td>
+          <td id="file-particle_swarm-py-LC87" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n_particles</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L88" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="88"></td>
+          <td id="file-particle_swarm-py-LC88" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-en">update_velocity</span>(<span class="pl-s1">global_best_particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L89" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="89"></td>
+          <td id="file-particle_swarm-py-LC89" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">swarm_particle</span>[<span class="pl-s1">j</span>].<span class="pl-en">update_position</span>(<span class="pl-s1">bounds</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L90" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="90"></td>
+          <td id="file-particle_swarm-py-LC90" class="blob-code blob-code-inner js-file-line">                </td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L91" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="91"></td>
+          <td id="file-particle_swarm-py-LC91" class="blob-code blob-code-inner js-file-line">            <span class="pl-v">A</span>.<span class="pl-en">append</span>(<span class="pl-s1">fitness_global_best_particle_position</span>)  <span class="pl-c"># record the best fitness</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L92" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="92"></td>
+          <td id="file-particle_swarm-py-LC92" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L93" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="93"></td>
+          <td id="file-particle_swarm-py-LC93" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">global_best_particle_position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L94" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="94"></td>
+          <td id="file-particle_swarm-py-LC94" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">ofunc_clean</span> <span class="pl-c1">=</span> <span class="pl-en">sum</span>(<span class="pl-s1">x</span>[<span class="pl-s1">idx</span>]<span class="pl-c1">*</span><span class="pl-s1">cost2d</span>[<span class="pl-s1">idx</span><span class="pl-c1">//</span><span class="pl-en">len</span>(<span class="pl-v">J</span>), <span class="pl-s1">idx</span><span class="pl-c1">%</span><span class="pl-en">len</span>(<span class="pl-v">J</span>)] <span class="pl-k">for</span> <span class="pl-s1">idx</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">cost2d</span>.<span class="pl-s1">size</span>))</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L95" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="95"></td>
+          <td id="file-particle_swarm-py-LC95" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L96" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="96"></td>
+          <td id="file-particle_swarm-py-LC96" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"># if i% 100 == 0:</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L97" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="97"></td>
+          <td id="file-particle_swarm-py-LC97" class="blob-code blob-code-inner js-file-line">            <span class="pl-c">#     print(i, fitness_global_best_particle_position, ofunc_clean, global_best_particle_position)</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L98" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="98"></td>
+          <td id="file-particle_swarm-py-LC98" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L99" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="99"></td>
+          <td id="file-particle_swarm-py-LC99" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"># Visualization</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L100" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="100"></td>
+          <td id="file-particle_swarm-py-LC100" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">ax</span>.<span class="pl-en">plot</span>(<span class="pl-v">A</span>, <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">'r'</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L101" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="101"></td>
+          <td id="file-particle_swarm-py-LC101" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">ax</span>.<span class="pl-en">set_ylim</span>(<span class="pl-c1">3400</span>,<span class="pl-c1">6000</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L102" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="102"></td>
+          <td id="file-particle_swarm-py-LC102" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">fig</span>.<span class="pl-s1">canvas</span>.<span class="pl-en">draw</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L103" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="103"></td>
+          <td id="file-particle_swarm-py-LC103" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">ax</span>.<span class="pl-en">set_xlim</span>(<span class="pl-s1">left</span><span class="pl-c1">=</span><span class="pl-en">max</span>(<span class="pl-c1">0</span>, <span class="pl-s1">i</span> <span class="pl-c1">-</span> <span class="pl-s1">n_iterations</span>), <span class="pl-s1">right</span> <span class="pl-c1">=</span> <span class="pl-s1">i</span> <span class="pl-c1">+</span> <span class="pl-c1">3</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L104" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="104"></td>
+          <td id="file-particle_swarm-py-LC104" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-c1">0.001</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L105" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="105"></td>
+          <td id="file-particle_swarm-py-LC105" class="blob-code blob-code-inner js-file-line">        </td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L106" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="106"></td>
+          <td id="file-particle_swarm-py-LC106" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">pen_cust_demand</span> <span class="pl-c1">=</span> \</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L107" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="107"></td>
+          <td id="file-particle_swarm-py-LC107" class="blob-code blob-code-inner js-file-line">            <span class="pl-en">sum</span>((<span class="pl-en">max</span>(<span class="pl-c1">0</span>, <span class="pl-en">abs</span>(<span class="pl-en">sum</span>(<span class="pl-s1">x</span>[<span class="pl-s1">idx</span>: <span class="pl-s1">idx</span> <span class="pl-c1">+</span> <span class="pl-en">len</span>(<span class="pl-v">J</span>)]) <span class="pl-c1">-</span> <span class="pl-s1">d</span>[<span class="pl-s1">idx</span><span class="pl-c1">//</span><span class="pl-en">len</span>(<span class="pl-v">J</span>) <span class="pl-c1">+</span> <span class="pl-c1">1</span>])))<span class="pl-c1">**</span><span class="pl-c1">2</span> <span class="pl-k">for</span> <span class="pl-s1">idx</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-s1">cost2d</span>.<span class="pl-s1">size</span>, <span class="pl-en">len</span>(<span class="pl-v">J</span>)))</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L108" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="108"></td>
+          <td id="file-particle_swarm-py-LC108" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">pen_fact_capacity</span> <span class="pl-c1">=</span> \</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L109" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="109"></td>
+          <td id="file-particle_swarm-py-LC109" class="blob-code blob-code-inner js-file-line">            <span class="pl-en">sum</span>((<span class="pl-en">max</span>(<span class="pl-c1">0</span>, (<span class="pl-en">sum</span>(<span class="pl-s1">x</span>[<span class="pl-s1">idx</span>: <span class="pl-s1">idx</span> <span class="pl-c1">+</span> <span class="pl-en">len</span>(<span class="pl-v">I</span>)]) <span class="pl-c1">-</span> <span class="pl-v">M</span>[<span class="pl-s1">idx</span><span class="pl-c1">//</span><span class="pl-en">len</span>(<span class="pl-v">I</span>) <span class="pl-c1">+</span> <span class="pl-c1">1</span>])))<span class="pl-c1">**</span><span class="pl-c1">3</span> <span class="pl-k">for</span> <span class="pl-s1">idx</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-s1">cost2d</span>.<span class="pl-s1">size</span>, <span class="pl-en">len</span>(<span class="pl-v">I</span>)))</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L110" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="110"></td>
+          <td id="file-particle_swarm-py-LC110" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L111" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="111"></td>
+          <td id="file-particle_swarm-py-LC111" class="blob-code blob-code-inner js-file-line">        <span class="pl-en">print</span>(<span class="pl-s">'RESULT:'</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L112" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="112"></td>
+          <td id="file-particle_swarm-py-LC112" class="blob-code blob-code-inner js-file-line">        <span class="pl-en">print</span>(<span class="pl-s">'Objective function value:'</span>, <span class="pl-s1">fitness_global_best_particle_position</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L113" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="113"></td>
+          <td id="file-particle_swarm-py-LC113" class="blob-code blob-code-inner js-file-line">        <span class="pl-en">print</span>(<span class="pl-s">'Penalty customer demand:'</span>, <span class="pl-s1">pen_cust_demand</span>)     </td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L114" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="114"></td>
+          <td id="file-particle_swarm-py-LC114" class="blob-code blob-code-inner js-file-line">        <span class="pl-en">print</span>(<span class="pl-s">'Penalty factory capacity:'</span>, <span class="pl-s1">pen_fact_capacity</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L115" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="115"></td>
+          <td id="file-particle_swarm-py-LC115" class="blob-code blob-code-inner js-file-line">        <span class="pl-en">print</span>(<span class="pl-s">'Objective function value clean:'</span>, <span class="pl-s1">ofunc_clean</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L116" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="116"></td>
+          <td id="file-particle_swarm-py-LC116" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L117" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="117"></td>
+          <td id="file-particle_swarm-py-LC117" class="blob-code blob-code-inner js-file-line">        <span class="pl-v">EPS</span> <span class="pl-c1">=</span> <span class="pl-c1">1.e-1</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L118" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="118"></td>
+          <td id="file-particle_swarm-py-LC118" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">global_best_particle_position</span></td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L119" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="119"></td>
+          <td id="file-particle_swarm-py-LC119" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">idx</span>,<span class="pl-s1">_</span> <span class="pl-c1">in</span> <span class="pl-en">enumerate</span>(<span class="pl-s1">x</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L120" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="120"></td>
+          <td id="file-particle_swarm-py-LC120" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">x</span>[<span class="pl-s1">idx</span>] <span class="pl-c1">&gt;</span> <span class="pl-v">EPS</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-particle_swarm-py-L121" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="121"></td>
+          <td id="file-particle_swarm-py-LC121" class="blob-code blob-code-inner js-file-line">                <span class="pl-en">print</span>(<span class="pl-s">"sending quantity %10s from factory %3s to customer %3s"</span> <span class="pl-c1">%</span> (<span class="pl-en">round</span>(<span class="pl-s1">x</span>[<span class="pl-s1">idx</span>]), <span class="pl-s1">idx</span><span class="pl-c1">%</span><span class="pl-en">len</span>(<span class="pl-v">J</span>) <span class="pl-c1">+</span> <span class="pl-c1">1</span>, <span class="pl-s1">idx</span><span class="pl-c1">//</span><span class="pl-en">len</span>(<span class="pl-v">J</span>) <span class="pl-c1">+</span> <span class="pl-c1">1</span>))</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/Igor-Shvab/fd3082c8ccd20c05135837721a192565/raw/cdee2f168240754a3a2227c0ccc2d824f7cf94f7/particle_swarm.py" style="float:right" class="Link--inTextBlock">view raw</a>
+        <a href="https://gist.github.com/Igor-Shvab/fd3082c8ccd20c05135837721a192565#file-particle_swarm-py" class="Link--inTextBlock">
+          particle_swarm.py
+        </a>
+        hosted with ❤ by <a class="Link--inTextBlock" href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;8423c3de0d3dd722&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;}" crossorigin="anonymous"></script>
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
